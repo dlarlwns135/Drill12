@@ -2,9 +2,12 @@
 
 from pico2d import get_time, load_image, load_font, clamp, SDL_KEYDOWN, SDL_KEYUP, SDLK_SPACE, SDLK_LEFT, SDLK_RIGHT, \
     draw_rectangle
+
+import zombie
 from ball import Ball
 import game_world
 import game_framework
+import play_mode
 
 # state event check
 # ( state event type, event value )
@@ -196,6 +199,7 @@ class Boy:
             self.ball_count -= 1
             ball = Ball(self.x, self.y, self.face_dir*10)
             game_world.add_object(ball)
+            game_world.add_collision_pair('ball:zombie', ball, None)
 
     def update(self):
         self.state_machine.update()
