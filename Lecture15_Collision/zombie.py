@@ -41,10 +41,10 @@ class Zombie:
     def update(self):
         self.frame = (self.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % FRAMES_PER_ACTION
         self.x += RUN_SPEED_PPS * self.dir * game_framework.frame_time
-        if self.x > 1600:
-            self.dir = -1
-        elif self.x < 800:
-            self.dir = 1
+        # if self.x > 1600:
+        #     self.dir = -1
+        # elif self.x < 800:
+        #     self.dir = 1
         self.x = clamp(800, self.x, 1600)
         pass
 
@@ -62,7 +62,7 @@ class Zombie:
     def handle_collision(self, group, other):
         if group == 'boy:zombie':  # 충돌 확인
             exit(1)
-        if group == 'ball:zombie':
+        if group == 'zombie:ball':
             if self.hp == 2:
                 self.size = self.size // 2
                 self.hp = 1
